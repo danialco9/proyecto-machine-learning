@@ -1,34 +1,16 @@
-# Online Retail II — Análisis exploratorio y modelo de recompra
+# Online Retail II
 
-Análisis de más de **1 millón de transacciones** de una tienda online (dataset *Online Retail II*) y modelo que estima la **probabilidad de que un cliente vuelva a comprar**.
+Proyecto de Machine Learning del máster. Trabajé con el dataset Online Retail II, que tiene algo más de un millón de ventas de una tienda online británica, y la pregunta que quería responder era qué clientes tienen más probabilidad de volver a comprar.
 
-## Qué incluye
+Lo primero fue limpiar los datos. Había bastantes devoluciones, duplicados y ventas sin cliente asociado (casi un 23 %), así que al final me quedé con unas 779.000 filas. Después hice el análisis exploratorio: cómo se reparten las ventas, en qué meses y a qué horas se vende más, y qué países y productos facturan más. Reino Unido se lleva más del 80 % de la facturación y hay un pico muy claro en octubre y noviembre por la campaña de Navidad.
 
-1. **Calidad de datos**: nulos, duplicados, devoluciones y tipos. Tras la limpieza quedan 779k filas (73 % del original); el 22,8 % de las transacciones no tiene cliente asociado.
-2. **Estadística descriptiva y visualizaciones**: distribuciones de facturación, cantidad y precio; serie temporal mensual; top países y productos; patrones por día y hora.
-3. **Dataset por cliente**: métricas RFM (frecuencia, gasto total, ticket medio, recencia, nº de productos…).
-4. **Modelo de recompra**: regresión logística con fecha de corte temporal (features antes del corte, etiqueta después) y búsqueda de hiperparámetros.
-5. **Explicabilidad**: coeficientes y *odds ratios* para entender qué variables impulsan la recompra.
-6. **Conclusiones de negocio**: 5.878 clientes en 41 países, Reino Unido ≈ 83 % de la facturación y pico de ventas en octubre-noviembre.
+Para el modelo agrupé los datos por cliente (frecuencia de compra, gasto total, ticket medio, días desde la última compra...) y usé una fecha de corte: con lo que pasó antes entreno, y lo que pasó después me dice si el cliente volvió o no. Usé una regresión logística porque me interesaba poder explicar qué variables pesan más, y eso se ve directamente en los coeficientes.
 
-## Archivos
+El análisis completo está en `online_retail_II_EDA-complete.ipynb`. El otro notebook es la primera versión.
 
-| Archivo | Descripción |
-|---|---|
-| `online_retail_II_EDA-complete.ipynb` | Análisis completo con modelo y conclusiones |
-| `online_retail_II_EDA-basic.ipynb` | Versión inicial del EDA |
-| `online_retail_II.xlsx` | Dataset |
+Para ejecutarlo:
 
-## Tecnologías
-
-Python · Pandas · NumPy · Matplotlib · Seaborn · scikit-learn · Jupyter
-
-## Cómo ejecutarlo
-
-```bash
+```
 pip install pandas numpy matplotlib seaborn scikit-learn openpyxl jupyter
 jupyter notebook online_retail_II_EDA-complete.ipynb
 ```
-
----
-Proyecto del Máster en Data Science & IA (Evolve) · [Daniel Alconada](https://github.com/danialco9)
